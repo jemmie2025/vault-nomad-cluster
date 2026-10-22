@@ -1,0 +1,24 @@
+# DRAFT: Merge into the existing Nomad client configuration
+# on each approved target host after infrastructure review.
+# This is not a complete Nomad agent configuration.
+
+client {
+  meta {
+    vault_eligible = "true"
+  }
+
+  host_volume "vault-data" {
+    path      = "/opt/vault/data"
+    read_only = false
+  }
+
+  host_volume "vault-audit" {
+    path      = "/opt/vault/audit"
+    read_only = false
+  }
+
+  host_volume "vault-tls" {
+    path      = "/opt/vault/tls"
+    read_only = true
+  }
+}

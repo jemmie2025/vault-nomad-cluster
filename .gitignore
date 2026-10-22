@@ -1,0 +1,46 @@
+# Local environment variables
+.env
+.env.*
+!.env.example
+
+# Credentials and initialization output
+.vault-token
+vault-init*
+init-keys*
+unseal-keys*
+root-token*
+credentials/
+secrets/
+
+# TLS certificates and private keys
+tls/
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Vault data, audit logs, and backups
+data/
+vault-data/
+raft/
+logs/
+*.log
+backups/
+snapshots/
+*.snap
+
+# Local deployment values
+*.local.hcl
+*.local.nomad
+*.nomadvars
+*.nomadvars.hcl
+*.nomadvars.json
+
+# Editor and operating-system files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db

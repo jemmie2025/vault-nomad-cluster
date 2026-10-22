@@ -1,0 +1,39 @@
+# DRAFT ONLY — replace placeholders before deployment.
+# Paths below refer to locations inside the Vault container.
+
+ui            = true
+disable_mlock = true
+log_level     = "info"
+
+api_addr     = "https://REPLACE_NODE_DNS:8200"
+cluster_addr = "https://REPLACE_NODE_DNS:8201"
+
+listener "tcp" {
+  address         = "0.0.0.0:8200"
+  cluster_address = "0.0.0.0:8201"
+
+  tls_disable     = false
+  tls_min_version = "tls12"
+  tls_cert_file   = "/vault/tls/vault-cert.pem"
+  tls_key_file    = "/vault/tls/vault-key.pem"
+}
+
+storage "raft" {
+  path    = "/vault/data"
+  node_id = "REPLACE_UNIQUE_STABLE_NODE_ID"
+
+  retry_join {
+    leader_api_addr     = "https://REPLACE_NODE_1_DNS:8200"
+    leader_ca_cert_file = "/vault/tls/ca.pem"
+  }
+
+  retry_join {
+    leader_api_addr     = "https://REPLACE_NODE_2_DNS:8200"
+    leader_ca_cert_file = "/vault/tls/ca.pem"
+  }
+
+  retry_join {
+    leader_api_addr     = "https://REPLACE_NODE_3_DNS:8200"
+    leader_ca_cert_file = "/vault/tls/ca.pem"
+  }
+}

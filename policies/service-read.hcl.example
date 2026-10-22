@@ -1,0 +1,8 @@
+# DRAFT — read-only policy for one application.
+# Assumes KV v2 is mounted at "kv/".
+# Replace "example-service" with the approved service name.
+# Store that application's secrets beneath this prefix.
+
+path "kv/data/services/example-service/*" {
+  capabilities = ["read"]
+}
